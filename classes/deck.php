@@ -5,7 +5,7 @@ class Deck{
     public function __construct(){
         $this->cards = [];
         $faces = range(1,10);
-        $faces = array_merge($faces,["Jack","Queen","King"]);
+        $faces = array_merge($faces,["Jack","Queen","King", "ACE"]);
         $colors = ["HEART","CLUB","DIAMOND","SPADE"];
 
         foreach($colors as $color){

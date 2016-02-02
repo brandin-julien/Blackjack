@@ -3,7 +3,7 @@
 require_once "classes/game.php";
 session_start();
 
-if(isset($_POST['reset'])) {
+if(isset($_POST['reset']) && $game->status == 'end') {
     unset($_SESSION['game']);
 }
 
@@ -22,14 +22,17 @@ if(isset($_POST['choice'])){
 
 if($game->player->getHandValue() > 21){
     echo "Vous avez perdu".$game->player->getHandValue();
+    $game->status = 'end';
 }else{
     echo "Vous avez =>".$game->player->getHandValue();
 }
 
-if(isset($_POST['pass'])) {
+if(isset($_POST['pass']) && $game->status != 'end'){
     $game->status = 'end';
-    while($game->bank->getHandValue() <= $game->player->getHandValue()  && $game->status != 'end'){
-        $game->bank->take($game->deck->deal(1));
+    while ($game->bank->getHandValue() <= $game->player->getHandValue()) {
+        if ($game->player->getHandValue() <= 21) {
+            $game->bank->take($game->deck->deal(1));
+        }
     }
 }
 

@@ -19,6 +19,9 @@ class Card{
     public function getValue(){
         if(is_int($this->face)){
             return $this->face;
+        }
+        elseif($this->face == 'ACE'){
+            return 11;
         }else{
             return 10;
         }
