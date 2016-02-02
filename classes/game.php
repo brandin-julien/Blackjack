@@ -14,7 +14,7 @@ class game{
         $this->deck->shuffle();
         $this->bank->take($this->deck->deal(2));
         $this->player->take($this->deck->deal(2));
-        $this->status = 'begining';
+        $this->status = 'beginning';
     }
 }
 ?>
