@@ -28,7 +28,7 @@ if($game->player->getHandValue() > 21){
 
 if(isset($_POST['pass'])) {
     $game->status = 'end';
-    while($game->bank->getHandValue() <= $game->player->getHandValue()){
+    while($game->bank->getHandValue() <= $game->player->getHandValue()  && $game->status != 'end'){
         $game->bank->take($game->deck->deal(1));
     }
 }
